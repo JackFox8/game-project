@@ -1,3 +1,28 @@
-[gd_scene format=3 uid="uid://b2bgcy7g3ayap"]
+[gd_scene load_steps=5 format=3 uid="uid://b2bgcy7g3ayap"]
+
+[ext_resource type="PackedScene" uid="uid://b1u6d3ynfb66p" path="res://player.tscn" id="1_evuvt"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_shv2w"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_0yctx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jxw5r"]
 
 [node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_evuvt")]
+position = Vector2(154, 271)
+scale = Vector2(1, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(285, 273)
+physics_material_override = SubResource("PhysicsMaterial_shv2w")
+metadata/_edit_group_ = true
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D"]
+scale = Vector2(96.5, 73.5)
+mesh = SubResource("QuadMesh_0yctx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+scale = Vector2(4.8, 3.7)
+shape = SubResource("RectangleShape2D_jxw5r")

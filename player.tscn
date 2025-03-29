@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1u6d3ynfb66p"]
+
+[ext_resource type="Texture2D" uid="uid://dat37a22eoyob" path="res://art/Golden Retreiver Pup Sprite.png" id="1_0buik"]
+[ext_resource type="Texture2D" uid="uid://bb38d78o64jbk" path="res://art/Golden Retreiver Pup Jump.png" id="1_gpt8y"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wmve0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_gpt8y")
+}],
+"loop": true,
+"name": &"Jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0buik")
+}, {
+"duration": 1.5,
+"texture": ExtResource("1_gpt8y")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_68ias"]
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(316, 318)
+scale = Vector2(10, 10)
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wmve0")
+animation = &"Walk"
+frame = 1
+frame_progress = 0.828548
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.9, 1.3)
+shape = SubResource("RectangleShape2D_68ias")
