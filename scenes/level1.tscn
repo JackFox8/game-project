@@ -1,6 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2bgcy7g3ayap"]
-
-[ext_resource type="PackedScene" uid="uid://b1u6d3ynfb66p" path="res://player.tscn" id="1_evuvt"]
+[gd_scene load_steps=4 format=3 uid="uid://b2bgcy7g3ayap"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_shv2w"]
 
@@ -8,14 +6,10 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jxw5r"]
 
-[node name="Node2D" type="Node2D"]
-
-[node name="Player" parent="." instance=ExtResource("1_evuvt")]
-position = Vector2(154, 271)
-scale = Vector2(1, 1)
+[node name="level1" type="Node2D"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(285, 273)
+position = Vector2(320, 321)
 physics_material_override = SubResource("PhysicsMaterial_shv2w")
 metadata/_edit_group_ = true
 
