@@ -11,6 +11,8 @@ var is_jumping : bool = false
 var jump_timer : float = 0
 var coyote_timer : float = 0
 
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor() and not is_jumping:
@@ -40,4 +42,16 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 
+# Flip the sprite to face direction moving in
+	if direction != 0:
+		animated_sprite_2d.flip_h = direction < 0
+	
+# Animations
+	if not is_on_floor():
+		animated_sprite_2d.play("Jump")
+	elif Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
+		animated_sprite_2d.play("Walk")
+	else:
+		animated_sprite_2d.stop()
+	
 	move_and_slide()
