@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 
-@export var speed : float = 300.0
-@export var jump_force : float = -250.0
+@export var speed : float = 225.0
+@export var jump_force : float = -150.0
 @export var jump_time : float = 0.25
 @export var coyote_time : float = 0.075
 @export var gravity_multiplier: float = 3.0
@@ -11,7 +11,8 @@ var is_jumping : bool = false
 var jump_timer : float = 0
 var coyote_timer : float = 0
 
-@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var PlayerAnimation: AnimatedSprite2D = $PlayerAnimation
+@onready var EmoteAnimation: AnimatedSprite2D = $EmoteAnimation
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -44,14 +45,47 @@ func _physics_process(delta: float) -> void:
 
 # Flip the sprite to face direction moving in
 	if direction != 0:
-		animated_sprite_2d.flip_h = direction < 0
+		PlayerAnimation.flip_h = direction < 0
 	
 # Animations
 	if not is_on_floor():
-		animated_sprite_2d.play("Jump")
+		PlayerAnimation.play("Jump")
 	elif Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
-		animated_sprite_2d.play("Walk")
+		PlayerAnimation.play("Walk")
 	else:
-		animated_sprite_2d.stop()
+		PlayerAnimation.stop()
 	
 	move_and_slide()
+
+# Trigger for the Cat Emote
+func _on_cat_trigger_body_entered(_body: CharacterBody2D) -> void:
+	EmoteAnimation.play("Angry")
+
+func _on_cat_trigger_body_exited(_body: CharacterBody2D) -> void:
+	EmoteAnimation.play("None")
+
+# Trigger for the Carrot Emote
+func _on_carrot_trigger_body_entered(_body: CharacterBody2D) -> void:
+	EmoteAnimation.play("Happy")
+
+func _on_carrot_trigger_body_exited(_body: CharacterBody2D) -> void:
+	EmoteAnimation.play("None")
+
+# Trigger for Ball Emote
+func _on_tennis_ball_trigger_body_entered(_body: CharacterBody2D) -> void:
+	EmoteAnimation.play("Excited")
+
+func _on_tennis_ball_trigger_body_exited(_body: CharacterBody2D) -> void:
+	EmoteAnimation.play("None")
+
+# Trigger for Storm Emote
+func _on_storm_trigger_body_entered(_body: CharacterBody2D) -> void:
+	EmoteAnimation.play("Scared")
+
+func _on_storm_trigger_body_exited(_body: CharacterBody2D) -> void:
+	EmoteAnimation.play("None")
+
+# Trigger Slow Down
+func _on_slow_trigger_body_entered(_body: CharacterBody2D) -> void:
+	speed = 100
+	jump_force = -75

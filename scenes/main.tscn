@@ -1,14 +1,71 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwf5x6dehmr14"]
+[gd_scene load_steps=8 format=3 uid="uid://bwf5x6dehmr14"]
 
 [ext_resource type="PackedScene" uid="uid://b2bgcy7g3ayap" path="res://scenes/level1.tscn" id="1_20v68"]
 [ext_resource type="PackedScene" uid="uid://b1u6d3ynfb66p" path="res://scenes/player.tscn" id="1_xjlor"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xqk68"]
+size = Vector2(19, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u3fi5"]
+size = Vector2(77, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ixvy"]
+size = Vector2(59, 41)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ysx2"]
+size = Vector2(227, 77)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ddtkb"]
+size = Vector2(20, 93)
 
 [node name="Main" type="Node"]
 
 [node name="2DScene" type="Node2D" parent="."]
 
 [node name="level1" parent="2DScene" instance=ExtResource("1_20v68")]
-position = Vector2(2, 0)
+position = Vector2(29, 3)
 
 [node name="PlayerCharacter" parent="2DScene" instance=ExtResource("1_xjlor")]
 position = Vector2(219, 301)
+
+[node name="Cat Trigger" type="Area2D" parent="2DScene"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="2DScene/Cat Trigger"]
+position = Vector2(36.5, 291)
+shape = SubResource("RectangleShape2D_xqk68")
+
+[node name="Carrot Trigger" type="Area2D" parent="2DScene"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="2DScene/Carrot Trigger"]
+position = Vector2(1059.5, 296)
+shape = SubResource("RectangleShape2D_u3fi5")
+
+[node name="Tennis Ball Trigger" type="Area2D" parent="2DScene"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="2DScene/Tennis Ball Trigger"]
+position = Vector2(2400.5, 285.5)
+shape = SubResource("RectangleShape2D_5ixvy")
+
+[node name="Storm Trigger" type="Area2D" parent="2DScene"]
+position = Vector2(1738, 198)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="2DScene/Storm Trigger"]
+position = Vector2(31.5, 83)
+shape = SubResource("RectangleShape2D_4ysx2")
+
+[node name="Slow Trigger" type="Area2D" parent="2DScene"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="2DScene/Slow Trigger"]
+position = Vector2(2783, 171.5)
+shape = SubResource("RectangleShape2D_ddtkb")
+
+[connection signal="area_entered" from="2DScene/Cat Trigger" to="2DScene/PlayerCharacter" method="_on_cat_trigger_area_entered"]
+[connection signal="body_entered" from="2DScene/Cat Trigger" to="2DScene/PlayerCharacter" method="_on_cat_trigger_body_entered"]
+[connection signal="body_exited" from="2DScene/Cat Trigger" to="2DScene/PlayerCharacter" method="_on_cat_trigger_body_exited"]
+[connection signal="body_entered" from="2DScene/Carrot Trigger" to="2DScene/PlayerCharacter" method="_on_carrot_trigger_body_entered"]
+[connection signal="body_exited" from="2DScene/Carrot Trigger" to="2DScene/PlayerCharacter" method="_on_carrot_trigger_body_exited"]
+[connection signal="body_entered" from="2DScene/Tennis Ball Trigger" to="2DScene/PlayerCharacter" method="_on_tennis_ball_trigger_body_entered"]
+[connection signal="body_exited" from="2DScene/Tennis Ball Trigger" to="2DScene/PlayerCharacter" method="_on_tennis_ball_trigger_body_exited"]
+[connection signal="body_entered" from="2DScene/Storm Trigger" to="2DScene/PlayerCharacter" method="_on_storm_trigger_body_entered"]
+[connection signal="body_exited" from="2DScene/Storm Trigger" to="2DScene/PlayerCharacter" method="_on_storm_trigger_body_exited"]
+[connection signal="body_entered" from="2DScene/Slow Trigger" to="2DScene/PlayerCharacter" method="_on_slow_trigger_body_entered"]

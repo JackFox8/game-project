@@ -1,8 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1u6d3ynfb66p"]
+[gd_scene load_steps=11 format=3 uid="uid://b1u6d3ynfb66p"]
 
 [ext_resource type="Texture2D" uid="uid://dat37a22eoyob" path="res://art/Golden Retreiver Pup Sprite.png" id="1_0buik"]
 [ext_resource type="Texture2D" uid="uid://bb38d78o64jbk" path="res://art/Golden Retreiver Pup Jump.png" id="1_gpt8y"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_t8yyp"]
+[ext_resource type="Texture2D" uid="uid://bxick1eqhsmsm" path="res://art/Carrot Emote.png" id="4_mhpat"]
+[ext_resource type="Texture2D" uid="uid://vk3ai2f3wfvl" path="res://art/cat emote.png" id="4_n3p8p"]
+[ext_resource type="Texture2D" uid="uid://o0s57meal0cg" path="res://art/Tennis Ball Emote.png" id="5_ebdfp"]
+[ext_resource type="Texture2D" uid="uid://di81j3f27npvw" path="res://art/Storm Emote.png" id="7_nxgua"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wmve0"]
 animations = [{
@@ -28,12 +32,56 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_68ias"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_djla2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_n3p8p")
+}],
+"loop": true,
+"name": &"Angry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_ebdfp")
+}],
+"loop": true,
+"name": &"Excited",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_mhpat")
+}],
+"loop": true,
+"name": &"Happy",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"None",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_nxgua")
+}],
+"loop": true,
+"name": &"Scared",
+"speed": 5.0
+}]
+
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(220, 280)
+scale = Vector2(0.75, 0.75)
 script = ExtResource("1_t8yyp")
 metadata/_edit_group_ = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_wmve0")
 animation = &"Walk"
@@ -49,3 +97,8 @@ offset = Vector2(100, -100)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_top_margin = 0.5
+
+[node name="EmoteAnimation" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_djla2")
+animation = &"None"

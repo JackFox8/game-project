@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c2whdgpbjpu7l"]
+
+[ext_resource type="Texture2D" uid="uid://ckmce4slu40km" path="res://art/Tennis Ball.png" id="1_fiila"]
+
+[node name="Tennis Ball" type="Sprite2D"]
+position = Vector2(2350, 323)
+texture = ExtResource("1_fiila")
